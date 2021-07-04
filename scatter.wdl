@@ -1,10 +1,10 @@
 version 1.0
 
 workflow reverse_flow {
-
-    Array[File] inputFiles
-
-    scatter (oneFile in inputFiles) {
+    input {
+       Array[String] inputFiles
+    }
+    scatter(oneFile in inputFiles) {
     call reverse { input: inputFile=oneFile }
     }
 
@@ -12,14 +12,15 @@ workflow reverse_flow {
 }
 
 task reverse {
-    File inputFile
-
+    input {
+    String inputFile
+    }
     command {
-        python reverse.py ${inputFile}
+        python3 /home/ziygawish/CURIS-workplace/reverse.py ${inputFile}
     }
 
     output {
-        File value = "result.txt"
+        String value = stdout()
     }
 
 }

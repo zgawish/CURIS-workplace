@@ -11,7 +11,7 @@ def reverse_file(filename):
 
 def main():
     filename = sys.argv[1]
-    reverse_file(filename)
+    reverse_file("/home/ziygawish/CURIS-workplace/" + filename)
 
 if __name__ == "__main__":
     main()
