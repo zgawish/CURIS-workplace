@@ -1,0 +1,1 @@
+sudo java -jar ../cromwell/cromwell-50.jar run scatter.wdl --inputs scatter.json

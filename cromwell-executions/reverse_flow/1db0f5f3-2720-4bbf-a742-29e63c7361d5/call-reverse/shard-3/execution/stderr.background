@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/ziygawish/CURIS-workplace/reverse.py", line 18, in <module>
+    main()
+  File "/home/ziygawish/CURIS-workplace/reverse.py", line 15, in main
+    reverse_file(filename)
+  File "/home/ziygawish/CURIS-workplace/reverse.py", line 4, in reverse_file
+    with open(filename, 'r') as input_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'd.txt'

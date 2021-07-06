@@ -1,0 +1,36 @@
+#!/bin/bash
+
+cd /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution
+tmpDir=$(mkdir -p "/home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/tmp.a9b2b2ac" && echo "/home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/tmp.a9b2b2ac")
+
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution
+
+)
+outbfe4919f="${tmpDir}/out.$$" errbfe4919f="${tmpDir}/err.$$"
+mkfifo "$outbfe4919f" "$errbfe4919f"
+trap 'rm "$outbfe4919f" "$errbfe4919f"' EXIT
+tee '/home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution/stdout' < "$outbfe4919f" &
+tee '/home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution/stderr' < "$errbfe4919f" >&2 &
+(
+cd /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution
+
+
+python3 /home/ziygawish/CURIS-workplace/reverse.py b.txt
+)  > "$outbfe4919f" 2> "$errbfe4919f"
+echo $? > /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution
+sync
+
+
+)
+mv /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution/rc.tmp /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/bfe4919f-0aa2-4bd2-927e-557aafeba6f4/call-reverse/shard-1/execution/rc

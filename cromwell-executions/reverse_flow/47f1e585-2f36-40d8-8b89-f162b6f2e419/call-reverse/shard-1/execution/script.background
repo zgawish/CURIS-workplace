@@ -1,0 +1,3 @@
+#!/bin/bash
+'/bin/bash' '/home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/47f1e585-2f36-40d8-8b89-f162b6f2e419/call-reverse/shard-1/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /home/ziygawish/CURIS-workplace/cromwell-executions/reverse_flow/47f1e585-2f36-40d8-8b89-f162b6f2e419/call-reverse/shard-1/execution/rc &
+echo $!
