@@ -1,0 +1,42 @@
+# Elasticluster Configuration Template
+# ====================================
+
+[cloud/google]
+provider=google
+gce_client_id=388332787657-b8nkuancpbn9njih50697sd274kca496.apps.googleusercontent.com
+gce_client_secret=cXnZN7e-z_vO6gVm6ou9D34X
+gce_project_id=spry-notch-318823
+
+
+[login/google]
+image_user=ziygawish
+image_sudo=yes
+user_key_name=elasticluster
+# You can generate the keypair with the command: `gcloud compute config-ssh`
+user_key_private=~/.ssh/google_compute_engine
+user_key_public=~/.ssh/google_compute_engine.pub
+
+
+[setup/gridengine]
+provider=ansible
+frontend_groups=gridengine_master
+compute_groups=gridengine_worker
+
+
+# a simple example, running a SoGE cluster on GCE
+[cluster/gridengine-on-gce]
+setup=gridengine
+frontend_nodes=1
+compute_nodes=2
+ssh_to=frontend
+
+# this is cloud specific
+cloud=google
+login=google
+security_group=default
+flavor=disk
+
+image_id=https://www.googleapis.com/compute/v1/projects/spry-notch-318823/global/images/elasticluster-test-image
+#****REPLACE WITH OUTPUT FROM: gcloud compute images list | grep debian | cut -f 1 -d " "****
+
+
