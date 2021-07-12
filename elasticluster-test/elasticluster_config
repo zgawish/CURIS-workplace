@@ -12,6 +12,7 @@ gce_project_id=spry-notch-318823
 image_user=ziygawish
 image_sudo=yes
 user_key_name=elasticluster
+image_user_sudo=root
 # You can generate the keypair with the command: `gcloud compute config-ssh`
 user_key_private=~/.ssh/google_compute_engine
 user_key_public=~/.ssh/google_compute_engine.pub
@@ -25,18 +26,34 @@ compute_groups=gridengine_worker
 
 # a simple example, running a SoGE cluster on GCE
 [cluster/gridengine-on-gce]
-setup=gridengine
-frontend_nodes=1
-compute_nodes=2
-ssh_to=frontend
-
-# this is cloud specific
 cloud=google
 login=google
+setup=gridengine
 security_group=default
-flavor=disk
 
-image_id=https://www.googleapis.com/compute/v1/projects/spry-notch-318823/global/images/elasticluster-test-image
+#image_id=debian-10-buster-v20190916
+image_id=ubuntu-1604-xenial-v20190913
+#image_id=debian-9-stretch-v20180716
+
+# use `g1-small` for testing, `n1-standard-4` for prod
+flavor=g1-small
+frontend_nodes=1
+compute_nodes=3
+ssh_to=frontend
+
+#setup=gridengine
+#frontend_nodes=1
+#compute_nodes=2
+#ssh_to=frontend
+
+# this is cloud specific
+#cloud=google
+#login=google
+#security_group=default
+#flavor=g1-small
+
+#image_id=https://www.googleapis.com/compute/v1/projects/spry-notch-318823/global/images/elasticluster-test-image
+# https://www.googleapis.com/compute/v1/projects/spry-notch-318823/global/images/elasticluster-test-image
 #****REPLACE WITH OUTPUT FROM: gcloud compute images list | grep debian | cut -f 1 -d " "****
 
 
