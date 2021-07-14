@@ -1,0 +1,25 @@
+{
+    "candidates": [
+        {
+            "formatted_address": "Bellmore, NY 11710, USA",
+            "geometry": {
+                "location": {
+                    "lat": 40.6651384,
+                    "lng": -73.52996399999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.706379,
+                        "lng": -73.509818
+                    },
+                    "southwest": {
+                        "lat": 40.6035269,
+                        "lng": -73.559304
+                    }
+                }
+            },
+            "name": "Bellmore, NY 11710"
+        }
+    ],
+    "status": "OK"
+}
