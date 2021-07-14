@@ -7,7 +7,7 @@ import elasticluster
 #   region:     region to start the nodes on
 #   access_key: access key of the current user to connect
 #   secret_key: secret key of the current user to connect
-cloud_provider = elasticluster.providers.gce.GoogleCloudProvider('388332787657-b8nkuancpbn9njih50697sd274kca496.apps.googleusercontent.com',
+cloud_provider = elasticluster.GoogleCloudProvider('388332787657-b8nkuancpbn9njih50697sd274kca496.apps.googleusercontent.com',
                                          'cXnZN7e-z_vO6gVm6ou9D34X', 'spry-notch-318823')
 
 # Initialising the setup provider needs a little more preparation:
