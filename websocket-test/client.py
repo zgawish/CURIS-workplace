@@ -2,7 +2,7 @@ import socket
 
 HEADER = 1024
 PORT = 5050
-SERVER = "192.168.86.23" # IP of head node
+SERVER = "10.128.0.3" # IP of head node
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "!DISCONNECT"
