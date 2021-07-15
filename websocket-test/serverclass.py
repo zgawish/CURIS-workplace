@@ -32,9 +32,11 @@ class SocketServer:
                 command += args[-1]
                 stream = os.popen(command)
                 output = stream.read()
-                return output
+                return str(output)
         else:
             return "Message recieved"
+
+
     def handle_client(self, conn, addr):
         print("[NEW CONNECTIONS] " + str(addr[0]) + " connected.")
 
@@ -51,7 +53,9 @@ class SocketServer:
                     conn.send(("SENDING WORK OVER").encode(self.FORMAT))
                 else:    
                     print(str(addr[0]) + ": " + msg)
-                    conn.send(parse_message(msg).encode(self.FORMAT))
+                    send_msg = self.parse_message(msg)
+                    print(send_msg)
+                    conn.send(send_msg.encode(self.FORMAT))
         conn.close()
 
 
