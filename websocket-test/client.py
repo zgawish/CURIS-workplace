@@ -21,12 +21,8 @@ def send(msg):
     client.send(message)
     print(client.recv(2048).decode(FORMAT))
 
-send("Hello World!")
 msg = input()
-send(msg)
-msg = input()
-send(msg)
-input()
-send(REQUEST_MSG)
-input()
+while msg != "": #cmd to run a command
+    send(msg)
+    msg = input()
 send(DISCONNECT_MSG)
