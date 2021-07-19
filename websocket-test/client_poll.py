@@ -28,7 +28,7 @@ def send(msg):
 
 start = time.time()
 for i in range(1000):
-    send('Hello')
+    send('Hello ' + str(i))
     time.sleep(5) 
 end = time.time()
 print("Time elapsed: " + str(end - start))
