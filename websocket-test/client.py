@@ -13,7 +13,7 @@ start = time.time()
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDR)
 end = time.time()
-print("Time elapsed: " + (end - start))
+print("Time elapsed: " + str(end - start))
 
 
 def send(msg):
