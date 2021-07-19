@@ -1,4 +1,5 @@
 import socket
+import time
 
 HEADER = 1024
 PORT = 5050
@@ -8,9 +9,12 @@ FORMAT = 'utf-8'
 DISCONNECT_MSG = "!DISCONNECT"
 REQUEST_MSG = "!REQUEST"
 
-
+start = time.time()
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDR)
+end = time.time()
+print("Time elapsed: " + (end - start))
+
 
 def send(msg):
     message = msg.encode(FORMAT)
@@ -20,6 +24,7 @@ def send(msg):
     client.send(send_length)
     client.send(message)
     print(client.recv(2048).decode(FORMAT))
+
 
 msg = input()
 while msg != "": #cmd to run a command
