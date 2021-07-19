@@ -3,7 +3,7 @@ import time
 
 HEADER = 1024
 PORT = 5050
-SERVER = "10.128.0.3" # internal IP of head node
+SERVER = "34.135.148.150" # "10.128.0.3" # internal IP of head node
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 DISCONNECT_MSG = "!DISCONNECT"
