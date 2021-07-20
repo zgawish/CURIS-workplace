@@ -57,6 +57,7 @@ class SocketServer:
                     print(send_msg)
                     conn.send(send_msg.encode(self.FORMAT))
         conn.close()
+        self.num_conns -= 1
 
 
     def start_server(self):

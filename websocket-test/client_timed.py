@@ -29,8 +29,8 @@ def send(msg):
     print("Time elapsed: " + str(end - start))
 
 
-msg = input()
+msg = input("Input: ")
 while msg != "": #cmd to run a command
     send(msg)
-    msg = input()
+    msg = input("Input: ")
 send(DISCONNECT_MSG)
