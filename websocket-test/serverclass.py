@@ -48,7 +48,7 @@ class SocketServer:
                 msg = conn.recv(msg_length).decode(self.FORMAT)
                 if msg == self.DISCONNECT_MSG:
                     connected = False
-                
+                    conn.send(("DISCONNECTED").encode(self.FORMAT))
                 elif msg == self.REQUEST_MSG:
                     conn.send(("SENDING WORK OVER").encode(self.FORMAT))
                 else:    
