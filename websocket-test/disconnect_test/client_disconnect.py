@@ -34,9 +34,10 @@ def connect_client():
 def run_test():
     t_end = time.time() + (60 * 60 * 4)
     while time.time() < t_end:
-        r_msg = send('Hello ' + str())
+        client = connect_client()
+        r_msg = send(client, 'Hello ' + str())
         if r_msg == "Message recieved":
-            r_msg = send(DISCONNECT_MSG)
+            r_msg = send(client, DISCONNECT_MSG)
             print(r_msg)
         time.sleep(5)
 
