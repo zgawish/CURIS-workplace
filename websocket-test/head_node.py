@@ -21,7 +21,7 @@ class HeadNode:
     def parse_message(self, msg):
         args = msg.split()
         if args[0] == 'cmd': # command constant
-            if len(args) == 1:
+            if len(args) == 1:  
                 return "Error: Send arguments with cmd"
             else:
                 command = ""
@@ -38,7 +38,6 @@ class HeadNode:
 
     def handle_client(self, conn, addr):
         print("[NEW CONNECTIONS] " + str(addr[0]) + " connected.")
-
         connected = True
         while connected:
             msg_length = conn.recv(self.HEADER).decode(self.FORMAT) # recieve size of message then actual string
