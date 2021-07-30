@@ -1,12 +1,11 @@
 import socket
 import threading
 import os
-import time
 
 class SocketServer:
     HEADER = 1024
     PORT = 5050
-    SERVER = socket.gethostbyname(socket.gethostname()) # 192.168.86.23
+    SERVER = "34.135.148.150" # external IP
     ADDR = (SERVER, PORT)
     FORMAT = 'utf-8'
     DISCONNECT_MSG = "!DISCONNECT"
@@ -49,9 +48,7 @@ class SocketServer:
                 msg = conn.recv(msg_length).decode(self.FORMAT)
                 if msg == self.DISCONNECT_MSG:
                     connected = False
-                    t = time.localtime()
-                    current_time = time.strftime("%H:%M:%S", t)
-                    conn.send(("DISCONNECTED: " + current_time).encode(self.FORMAT))
+                
                 elif msg == self.REQUEST_MSG:
                     conn.send(("SENDING WORK OVER").encode(self.FORMAT))
                 else:    
@@ -61,7 +58,6 @@ class SocketServer:
                     conn.send(send_msg.encode(self.FORMAT))
         conn.close()
         self.num_conns -= 1
-        print("[ACTIVE CONNECTIONS] " + str(self.num_conns))
 
 
     def start_server(self):
@@ -69,7 +65,6 @@ class SocketServer:
         print("[LISTENING] Server is listening on " + self.SERVER)
         while True:
             conn, addr = self.server.accept()
-            self.num_conns += 1
             thread = threading.Thread(target=self.handle_client, args=(conn, addr))
             thread.start()
             print("[ACTIVE CONNECTIONS] " + str(threading.activeCount() - 1))
